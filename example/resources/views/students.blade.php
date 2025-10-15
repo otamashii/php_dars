@@ -1,9 +1,15 @@
 <x-layout>
-     <x-slot:heading>
-        Students Page
+    <x-slot:heading>
+        Students List
     </x-slot:heading>
-    <h1>This is Students Page</h1>
-    <x-slot:footer>
-        <p class="text-red-500">Footer</p>
-    </x-slot:footer>
+
+        @foreach ($students as $student)
+         
+                <a href="/student/{{ $student['id'] }}" class="text-blue-500 hover:underline">
+                    <li>
+                        {{ $student['name'] }} {{ $student['lastname'] }}
+                    </li>
+                </a>
+        @endforeach
+    
 </x-layout>
