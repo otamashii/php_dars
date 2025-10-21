@@ -5,6 +5,7 @@ use App\Models\Job;
 use App\Models\Student;
 
 
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -65,3 +66,10 @@ Route::get('/teachers', function () {
 Route::get('/users', function () {
     return view('users');
 });
+
+
+
+
+
+
+
