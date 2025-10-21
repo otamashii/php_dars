@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Post extends Model
 {
@@ -11,9 +12,9 @@ class Post extends Model
 
     protected $fillable = ['title', 'description'];
 
-    // Har bir postning ko‘p kommenti bo‘ladi
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        // Post -> Comment (one-to-many)
+        return $this->hasMany(Comment::class, 'post_id');
     }
 }

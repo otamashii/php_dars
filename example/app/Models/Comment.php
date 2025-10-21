@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,9 +10,9 @@ class Comment extends Model
 
     protected $fillable = ['post_id', 'comment'];
 
-    // Har bir comment bitta postga tegishli
     public function post()
     {
-        return $this->belongsTo(Post::class);
+        // Comment -> Post (belongs to)
+        return $this->belongsTo(Post::class, 'post_id');
     }
 }
