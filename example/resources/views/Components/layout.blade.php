@@ -33,6 +33,7 @@
               <a href="/contact" class="{{request()->is('contact') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}}rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Contact</a>
               <a href="/students" class="{{request()->is('students') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}}rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Students</a>
               <a href="/teachers" class="{{request()->is('teachers') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}}rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Teachers</a>
+              <a href="/subjects" class="{{request()->is('subjects') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}}rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Subjects</a>
               <a href="/users" class="{{request()->is('users') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}}rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Users</a>
 
             </div>
@@ -83,6 +84,7 @@
         <a href="/contact" class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('contact') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">Contact</a>
         <a href="/students" class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('students') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">Students</a>
         <a href="/teachers" class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('teachers') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">Teachers</a>
+                <a href="/subjects" class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('subjects') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">Subjects</a>
         <a href="/users" class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('users') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">Users</a>
 
 
