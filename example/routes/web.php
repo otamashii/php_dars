@@ -129,3 +129,41 @@ Route::get('/subject/{id}', function ($id) {
 //     $subject = Subject::findOrFail($id); // ❗ with() yo‘q
 //     return view('subject', ['subject' => $subject]);
 // });
+
+
+
+
+
+
+// routes/web.php
+
+// ... Qolgan routelar
+
+// 💡 Yangi talaba yaratish formasini ko'rsatish uchun GET route
+Route::get('/students/create', function () {
+    // Agar students.create view fayli to'g'ri joylashgan bo'lsa
+    return view('students.create'); 
+})->name('students.create'); 
+
+// 💡 Formadan kelgan ma'lumotlarni saqlash uchun POST route
+Route::post('/students', function () {
+   $attributes = request()->validate([
+        'name' => ['required', 'string', 'min:3', 'max:255'],
+        'lastname' => ['required', 'string', 'min:5', 'max:255'],
+        // ...
+    ], 
+    [
+        // 💡 FAQAT NAME maydoni uchun MIN qoidasiga xabar qo'shish
+        'name.min' => 'Ism maydoni kamida 3 ta belgidan iborat bo‘lishi kerak.',
+        
+        // 💡 FAQAT LASTNAME maydoni uchun MIN qoidasiga xabar qo'shish
+        'lastname.min' => 'Familiya maydoni kamida 5 ta belgidan iborat bo‘lishi kerak.',
+        
+        // Agar talab qilsangiz, required qoidasini ham shunday yozishingiz mumkin:
+        // 'name.required' => 'Ism maydoni to‘ldirilishi shart.',
+    ]);
+    // ... Saqlash logikasi ...
+    return back()->with('success', '✅ Yangi talaba muvaffaqiyatli qo‘shildi!');
+});
+
+// ... Qolgan routelar

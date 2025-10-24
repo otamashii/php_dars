@@ -1,137 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laravel</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ $title ?? 'University System' }}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-   <!-- Include this script tag or install `@tailwindplus/elements` via npm: -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script> -->
-<!--
-  This example requires updating your template:
-
-  ```
-  <html class="h-full bg-gray-100">
-  <body class="h-full">
-  ```
--->
-<div class="min-h-full">
-  <nav class="bg-gray-800">
+<body class="bg-gradient-to-br from-blue-50 via-white to-indigo-50 min-h-screen">
+  
+  <!-- NAVBAR -->
+  <nav class="bg-gradient-to-r from-gray-900 via-indigo-900 to-gray-900 shadow-lg">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between">
-        <div class="flex items-center">
-          <div class="shrink-0">
-            <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" class="size-8" />
-          </div>
-          <div class="hidden md:block">
-            <div class="ml-10 flex items-baseline space-x-4">
-              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
-              <a href="/" aria-current="page" class="{{request()->is('/') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}} px-3 py-2 text-sm font-medium text-white">Home</a>
-              <a href="/jobs" class="{{request()->is('jobs') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}}rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Jobs</a>
-              <a href="/contact" class="{{request()->is('contact') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}}rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Contact</a>
-              <a href="/students" class="{{request()->is('students') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}}rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Students</a>
-              <a href="/teachers" class="{{request()->is('teachers') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}}rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Teachers</a>
-              <a href="/subjects" class="{{request()->is('subjects') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}}rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Subjects</a>
-              <a href="/users" class="{{request()->is('users') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}}rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Users</a>
-
-            </div>
-          </div>
+        <!-- Left section -->
+        <div class="flex items-center space-x-3">
+          <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
+               alt="Logo"
+               class="w-8 h-8 bg-white p-1 rounded-full shadow-md" />
+          <span class="text-white font-bold text-xl tracking-wide">University System</span>
         </div>
-        <div class="hidden md:block">
-          <div class="ml-4 flex items-center md:ml-6">
-            <button type="button" class="relative rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
-              <span class="absolute -inset-1.5"></span>
-              <span class="sr-only">View notifications</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
-                <path d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </button>
 
-            <!-- Profile dropdown -->
-            <el-dropdown class="relative ml-3">
-              <button class="relative flex max-w-xs items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-                <span class="absolute -inset-1.5"></span>
-                <span class="sr-only">Open user menu</span>
-                <img src="https://i.postimg.cc/h43gfxsL/photo-1-2025-10-15-11-35-54.jpg" alt="" class="size-8 rounded-full outline -outline-offset-1 outline-white/10" />
-              </button>
-
-             
-          </div>
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-2">
+          <a href="/" aria-current="page"
+            class="{{ request()->is('/') ? 'bg-white/10 text-white' : 'text-gray-300 hover:bg-white/10 hover:text-white' }} px-3 py-2 rounded-md text-sm font-medium transition">
+            Home
+          </a>
+          <a href="/jobs"
+            class="{{ request()->is('jobs') ? 'bg-white/10 text-white' : 'text-gray-300 hover:bg-white/10 hover:text-white' }} px-3 py-2 rounded-md text-sm font-medium transition">
+            Jobs
+          </a>
+          <a href="/contact"
+            class="{{ request()->is('contact') ? 'bg-white/10 text-white' : 'text-gray-300 hover:bg-white/10 hover:text-white' }} px-3 py-2 rounded-md text-sm font-medium transition">
+            Contact
+          </a>
+          <a href="/students"
+            class="{{ request()->is('students') ? 'bg-white/10 text-white' : 'text-gray-300 hover:bg-white/10 hover:text-white' }} px-3 py-2 rounded-md text-sm font-medium transition">
+            Students
+          </a>
+          <a href="/teachers"
+            class="{{ request()->is('teachers') ? 'bg-white/10 text-white' : 'text-gray-300 hover:bg-white/10 hover:text-white' }} px-3 py-2 rounded-md text-sm font-medium transition">
+            Teachers
+          </a>
+          <a href="/subjects"
+            class="{{ request()->is('subjects') ? 'bg-white/10 text-white' : 'text-gray-300 hover:bg-white/10 hover:text-white' }} px-3 py-2 rounded-md text-sm font-medium transition">
+            Subjects
+          </a>
+          <a href="/users"
+            class="{{ request()->is('users') ? 'bg-white/10 text-white' : 'text-gray-300 hover:bg-white/10 hover:text-white' }} px-3 py-2 rounded-md text-sm font-medium transition">
+            Users
+          </a>
         </div>
-        <div class="-mr-2 flex md:hidden">
-          <!-- Mobile menu button -->
-          <button type="button" command="--toggle" commandfor="mobile-menu" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
-            <span class="absolute -inset-0.5"></span>
-            <span class="sr-only">Open main menu</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 in-aria-expanded:hidden">
-              <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 not-in-aria-expanded:hidden">
-              <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+
+        <!-- Profile -->
+        <div class="hidden md:flex items-center space-x-3">
+          <img src="https://i.postimg.cc/h43gfxsL/photo-1-2025-10-15-11-35-54.jpg"
+               alt="User"
+               class="w-9 h-9 rounded-full ring-2 ring-white shadow-lg" />
+          <span class="text-gray-200 text-sm font-semibold">Shoxrux</span>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
           </button>
         </div>
       </div>
     </div>
 
-    <el-disclosure id="mobile-menu" hidden class="block md:hidden">
-      <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
-        <a href="/" class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('/') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">Home</a>
-        <a href="/jobs" class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('jobs') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">Jobs</a>
-        <a href="/contact" class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('contact') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">Contact</a>
-        <a href="/students" class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('students') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">Students</a>
-        <a href="/teachers" class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('teachers') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">Teachers</a>
-                <a href="/subjects" class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('subjects') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">Subjects</a>
-        <a href="/users" class="block rounded-md px-3 py-2 text-base font-medium {{ request()->is('users') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">Users</a>
-
-
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden bg-gray-800 border-t border-gray-700">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <a href="/" class="{{ request()->is('/') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} block px-3 py-2 rounded-md text-base font-medium">Home</a>
+        <a href="/jobs" class="{{ request()->is('jobs') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} block px-3 py-2 rounded-md text-base font-medium">Jobs</a>
+        <a href="/contact" class="{{ request()->is('contact') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+        <a href="/students" class="{{ request()->is('students') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} block px-3 py-2 rounded-md text-base font-medium">Students</a>
+        <a href="/teachers" class="{{ request()->is('teachers') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} block px-3 py-2 rounded-md text-base font-medium">Teachers</a>
+        <a href="/subjects" class="{{ request()->is('subjects') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} block px-3 py-2 rounded-md text-base font-medium">Subjects</a>
+        <a href="/users" class="{{ request()->is('users') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} block px-3 py-2 rounded-md text-base font-medium">Users</a>
       </div>
-      <div class="border-t border-white/10 pt-4 pb-3">
-        <div class="flex items-center px-5">
-          <div class="shrink-0">
-            <img src="https://i.postimg.cc/h43gfxsL/photo-1-2025-10-15-11-35-54.jpg" alt="" class="size-10 rounded-full outline -outline-offset-1 outline-white/10" />
-          </div>
-          <div class="ml-3">
-            <div class="text-base/5 font-medium text-white">Shoxrux Raxmonberdiyev</div>
-            <div class="text-sm font-medium text-gray-400">shoxruxraxmonberdiyev55@gmail.com</div>
-          </div>
-          <button type="button" class="relative ml-auto shrink-0 rounded-full p-1 text-gray-400 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
-            <span class="absolute -inset-1.5"></span>
-            <span class="sr-only">View notifications</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
-              <path d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
-        </div>
-       
-      </div>
-    </el-disclosure>
+    </div>
   </nav>
 
-  <header class="relative bg-white shadow-sm">
-    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{$heading}}</h1>
+  <!-- PAGE HEADER -->
+  <header class="bg-white shadow-md mt-4 mx-6 rounded-xl">
+    <div class="mx-auto max-w-7xl px-4 py-6 flex justify-between items-center">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-800">{{ $heading }}</h1>
+      <span class="text-sm text-gray-500">{{ date('F j, Y') }}</span>
     </div>
   </header>
-  <main>
-    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <!-- Your content -->
 
-      <?php echo $slot;?>
-
-    </div>
-
-    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <!-- Your content -->
-
-     
-
+  <!-- MAIN CONTENT -->
+  <main class="mx-6 mt-6 bg-white/80 backdrop-blur-md rounded-2xl shadow-lg border border-gray-100">
+    <div class="max-w-7xl mx-auto px-6 py-8">
+      {{ $slot }}
     </div>
   </main>
-</div>
 
+  <!-- FOOTER -->
+  <footer class="mt-10 bg-gray-900 text-gray-400 text-center py-4 rounded-t-xl">
+    <p>© 2025 University Management System — <span class="text-indigo-400">Shoxrux</span></p>
+  </footer>
+
+  <script>
+    const btn = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  </script>
 </body>
 </html>

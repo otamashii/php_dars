@@ -1,87 +1,60 @@
 <x-layout>
     <x-slot:heading>
-        🎓 Students List
+        <div class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-3xl font-bold p-4 rounded-xl shadow-lg text-center">
+            🎓 Students List
+        </div>
     </x-slot:heading>
 
-    <div class="max-w-6xl mx-auto mt-10 bg-white shadow-xl rounded-3xl border border-gray-200 overflow-hidden">
-        {{-- Header --}}
-        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-5">
-            <h1 class="text-2xl font-bold text-white tracking-wide">All Registered Students</h1>
-            <p class="text-blue-100 text-sm">Showing student profiles with pagination</p>
+    {{-- 💡 Muvaffaqiyat xabarini ko'rsatish (QO'SHING) --}}
+    @if (session('success'))
+        <div class="max-w-6xl mx-auto mt-4 p-4 text-sm text-green-700 bg-green-100 rounded-xl shadow-md" role="alert">
+            <span class="font-medium">Tabriklaymiz!</span> {{ session('success') }}
         </div>
+    @endif
+    
+    {{-- 💡 "Add New Student" tugmasini qo'shish (QO'SHING) --}}
+    <div class="max-w-6xl mx-auto mt-4 flex justify-end">
+        <a href="/students/create" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition">
+            ➕ Add New Student
+        </a>
+    </div>
 
-        {{-- Table --}}
-        <div class="overflow-x-auto">
-            <table class="min-w-full text-sm text-left">
-                <thead class="bg-gray-100 border-b">
-                    <tr>
-                        <th class="px-6 py-3 font-semibold text-gray-600 uppercase tracking-wider">ID</th>
-                        <th class="px-6 py-3 font-semibold text-gray-600 uppercase tracking-wider">Name</th>
-                        <th class="px-6 py-3 font-semibold text-gray-600 uppercase tracking-wider">Lastname</th>
-                        <th class="px-6 py-3 font-semibold text-gray-600 uppercase tracking-wider">Created At</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @foreach ($students as $student)
-                    <tr class="border-b hover:bg-blue-50 transition duration-200">
-                        {{-- ID --}}
-                        <td class="px-6 py-4 text-gray-700 font-medium">{{ $student->id }}</td>
-
-                        {{-- Name + clickable link --}}
-                        <td class="px-6 py-4">
-                            <a href="/student/{{ $student->id }}" 
-                               class="flex items-center gap-3 text-blue-700 hover:text-blue-900 font-semibold hover:underline">
-                                <img src="https://ui-avatars.com/api/?name={{ urlencode($student->name.' '.$student->lastname) }}&background=E0E7FF&color=3730A3&size=40" 
+    <div class="max-w-6xl mx-auto mt-4 bg-white shadow-2xl rounded-2xl overflow-hidden">
+        <table class="min-w-full border border-gray-200 text-sm">
+            <thead class="bg-gradient-to-r from-blue-100 to-indigo-200 text-gray-700 uppercase tracking-wider">
+                <tr>
+                    <th class="py-2 px-4 text-left border-b">ID</th>
+                    <th class="py-2 px-4 text-left border-b">Name</th>
+                    <th class="py-2 px-4 text-left border-b">Lastname</th>
+                    <th class="py-2 px-4 text-left border-b">Created At</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+                @foreach ($students as $student)
+                    <tr class="hover:bg-blue-50 transition-all duration-200">
+                        <td class="py-3 px-4 font-medium text-gray-700">{{ $student->id }}</td>
+                        <td class="py-3 px-4">
+                            <a href="/student/{{ $student->id }}" class="text-blue-600 hover:text-indigo-700 font-semibold hover:underline flex items-center gap-2">
+                                <img src="https://ui-avatars.com/api/?name={{ urlencode($student->name.' '.$student->lastname) }}&background=E0E7FF&color=3730A3&size=40"
                                      alt="avatar" class="w-8 h-8 rounded-full border border-gray-200">
                                 {{ $student->name }}
                             </a>
                         </td>
-
-                        {{-- Lastname --}}
-                        <td class="px-6 py-4 text-gray-700">{{ $student->lastname }}</td>
-
-                        {{-- Created date --}}
-                        <td class="px-6 py-4 text-gray-600">{{ $student->created_at->format('Y-m-d') }}</td>
+                        <td class="py-3 px-4 text-gray-700">{{ $student->lastname }}</td>
+                        <td class="py-3 px-4 text-gray-500">{{ $student->created_at->format('Y-m-d') }}</td>
                     </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-
-        {{-- Pagination --}}
-        <div class="flex justify-between items-center px-8 py-4 bg-gray-50 border-t">
-            <p class="text-gray-600 text-sm">
-                Showing <span class="font-semibold">{{ $students->firstItem() }}</span> to 
-                <span class="font-semibold">{{ $students->lastItem() }}</span> of 
-                <span class="font-semibold">{{ $students->total() }}</span> results
-            </p>
-
-            {{-- Custom styled pagination --}}
-            <div class="flex items-center gap-2">
-                @if ($students->onFirstPage())
-                    <span class="px-3 py-1 text-gray-400 border border-gray-200 rounded-md">← Prev</span>
-                @else
-                    <a href="{{ $students->previousPageUrl() }}" 
-                       class="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">← Prev</a>
-                @endif
-
-                @foreach ($students->getUrlRange(1, $students->lastPage()) as $page => $url)
-                    <a href="{{ $url }}"
-                       class="px-3 py-1 rounded-md border 
-                              {{ $page == $students->currentPage() 
-                                  ? 'bg-blue-600 text-white border-blue-600' 
-                                  : 'bg-white text-gray-700 border-gray-200 hover:bg-blue-50' }}">
-                       {{ $page }}
-                    </a>
                 @endforeach
+            </tbody>
+        </table>
 
-                @if ($students->hasMorePages())
-                    <a href="{{ $students->nextPageUrl() }}" 
-                       class="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">Next →</a>
-                @else
-                    <span class="px-3 py-1 text-gray-400 border border-gray-200 rounded-md">Next →</span>
-                @endif
+        <div class="bg-gray-50 p-4 flex justify-between items-center">
+            <p class="text-gray-600 text-sm">
+                Showing <span class="font-semibold">{{ $students->firstItem() }}</span>
+                to <span class="font-semibold">{{ $students->lastItem() }}</span>
+                of <span class="font-semibold">{{ $students->total() }}</span> results
+            </p>
+            <div class="flex space-x-2">
+                {{ $students->links('pagination::tailwind') }}
             </div>
         </div>
     </div>
